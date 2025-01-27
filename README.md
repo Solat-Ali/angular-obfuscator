@@ -55,7 +55,11 @@ module.exports = {
 
 **Before Obfuscation**
 
-**After Obfuscation**
+![image](https://github.com/user-attachments/assets/f9abc8c4-57ff-4fe3-8ab1-3f5d580fbc02)
+
+**After Obfuscation (Default Preset)**
+
+![image](https://github.com/user-attachments/assets/a2ac4608-8943-4436-ab05-35c9286d08a8)
 
 ### When to Use Code Obfuscatoin in Angular Apps?
 Code obfuscation is not a 100% foolproof way to secure your application, as determined attackers can still deobfuscate the code with enough effort. However, it can act as a strong deterrent by significantly increasing the time and complexity required to analyze or reverse-engineer your JavaScript, making it a useful layer of protection in certain scenarios.
