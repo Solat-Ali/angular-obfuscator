@@ -1,59 +1,88 @@
-# AngularObfuscator
+# Angular Obfuscator
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.6.
+This project demonstrates code obfuscation in an Angular application using a custom Webpack configuration and `javascript-obfuscator`. It was generated with Angular CLI version `19.0.6`.
 
-## Development server
+### What is Code Obfuscation? 
 
-To start a local development server, run:
+Code obfuscation involves modifying software code to enhance complexity and reducing readability to deter understanding and analysis. The main purpose of obfuscation is to protect the code from being reverse-engineered or tampered with. 
 
-```bash
-ng serve
+To know more about this topic, check out this [link](https://www.digitalguardian.com/blog/what-code-obfuscation-how-does-it-work). 
+
+### Code Obfuscation In Angular
+
+In case of Javascript / Typescript based applications, we have a package `javascript-obfuscator` which can be used for code obfuscation. This plugin allows for advanced configuration and usage, and in case of this Angular application, it was used with custom webpack configuration. 
+More info can be found [here](https://github.com/javascript-obfuscator/javascript-obfuscator) in official Github repository. 
+
+### How It Works? 
+
+1. First, create a new Angular project. In this example, we used the following command: 
+
+```
+ng new angular-obfuscator --routing --style=css --minimal --inline-template=false --inline-style=false --package-manager=pnpm
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+2. We need custom webpack so that we can extend default configuration, and add `javascript-obfuscator` as a webpack plugin. So, run the following command to install custom webpack: 
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
+```
+npm i -D @angular-builders/custom-webpack
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+**Note:**
+Complete details on how to configure custom webpack can be found [here](https://www.npmjs.com/package/@angular-builders/custom-webpack). For this example, we used `@angular-devkit/build-angular:browser` configuration as we don't have SSR / i18n or other advanced setup. 
 
-```bash
-ng generate --help
+3. Next, add some obfuscation presets e.g. in this example, you can find them under `js-obfuscation-presets` directory. 
+4. Finally, we have to add required preset in `custom-webpack.config.js` file like sample below: 
+
 ```
+var WebpackObfuscator = require('webpack-obfuscator');
 
-## Building
+// obfuscation presets 
+var preset_default_obf_high_perf = require('./js-obfuscation-presets/default-obf-high-perf')
+var preset_high_obf_low_perf= require('./js-obfuscation-presets/high-obf-low-perf')
+var preset_medium_obf_opt_perf= require('./js-obfuscation-presets/medium-obf-optimal-perf')
+var preset_low_obf_high_perf = require('./js-obfuscation-presets/low-obf-high-perf')
 
-To build the project run:
-
-```bash
-ng build
+module.exports = {
+  plugins: [
+    new WebpackObfuscator(
+     // Use any preset defined above in the "plugins" array below and compare "dist" folder "main.js" contents / file size
+      preset_default_obf_high_perf
+    )
+  ]
+}
 ```
+5. Here are some screenshots: 
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+**Before Obfuscation**
 
-## Running unit tests
+**After Obfuscation**
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+### When to Use Code Obfuscatoin in Angular Apps?
+Code obfuscation is not a 100% foolproof way to secure your application, as determined attackers can still deobfuscate the code with enough effort. However, it can act as a strong deterrent by significantly increasing the time and complexity required to analyze or reverse-engineer your JavaScript, making it a useful layer of protection in certain scenarios.
 
-```bash
-ng test
-```
+**Use it if:**
 
-## Running end-to-end tests
+- Protecting critical intellectual property in the front-end code is a top priority.
+- The app includes proprietary algorithms or sensitive logic that can't be offloaded to the back end.
+- Your project is in a highly competitive or security-conscious industry (e.g., finance or enterprise apps).
 
-For end-to-end (e2e) testing, run:
+**Avoid it if:**
 
-```bash
-ng e2e
-```
+- The increase in bundle size or performance impact outweighs the security benefits.
+- The app already follows best practices (e.g., logic on the back end, proper API security).
+- It’s best used as a complementary measure, not a primary security mechanism.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+### 🤝 Contributing ##
+Feel free to fork, improve, or share feedback via issues or pull requests!
 
-## Additional Resources
+### 📜 License
+This project is licensed under the MIT License.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### About Me
+👋 Hi, I'm Solat, a Senior Frontend Engineer specializing in Angular, with a full stack background. I'm actively looking to find a new home and work on exciting projects. Please feel free to reach out at `solataliagha@gmail.com` or visit my [LinkedIn](https://www.linkedin.com/in/solat-ali) in case of any opportunity!
+
+If you find this repository useful or inspiring, please consider giving it a ⭐!
+
+
+
+
