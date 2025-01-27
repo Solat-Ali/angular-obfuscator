@@ -83,7 +83,9 @@ Feel free to fork, improve, or share feedback via issues or pull requests!
 This project is licensed under the MIT License.
 
 ### About Me
-👋 Hi, I'm Solat, a Senior Frontend Engineer specializing in Angular, with a full stack background. I'm actively looking to find a new home and work on exciting projects. Please feel free to reach out at `solataliagha@gmail.com` or visit my [LinkedIn](https://www.linkedin.com/in/solat-ali) in case of any opportunity!
+𝗣𝗦: 
+👋 Hi, I'm Solat, a Senior Frontend Engineer specializing in Angular, with a strong full-stack background.
+I'm actively looking for remote full-time, contract, or freelance opportunities. If you're looking for someone to bring expertise and value to your next project, feel free to reach out at solataliagha@gmail.com or connect with me on LinkedIn.
 
 If you find this repository useful or inspiring, please consider giving it a ⭐!
 
